@@ -16,7 +16,7 @@ export const Home = ({classes}) => {
                 </Box>
                 <Box component='div' >
                     <Link to='/movies' className='button main-page-button'>Movies</Link>
-                    <Link to='/tvs' className='button main-page-button'>TV-Shows</Link>
+                    <Link to='/tv' className='button main-page-button'>TV-Shows</Link>
                 </Box>
             </Box>
         </Container>
