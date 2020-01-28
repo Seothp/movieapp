@@ -1,29 +1,9 @@
 import React from 'react';
-import { NavLink, Link } from 'react-router-dom'
-import { TextField, Container, Box, Button } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles'
+import { Link } from 'react-router-dom'
+import { Container, Box } from '@material-ui/core';
 import { Header } from '../components/header/header'
 
-const useStyles = makeStyles({
-    ml2: {
-        marginLeft: '16px',
-    },
-    mb4: {
-        display: 'inline-block',
-        marginBottom: '32px',
-    },
-    fz4: {
-        fontSize: '32px'
-    },
-    mxw720: {
-        maxWidth: '720px'
-    },
-    clr444: {
-        color: '#444444'
-    }
-})
-export const Home = () => {
-    const classes = useStyles();
+export const Home = ({classes}) => {
     
     return(
         <Container component='div'>

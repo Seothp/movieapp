@@ -9,13 +9,13 @@ export const Header = ({classes}) => {
             <Box component='nav' m={2}>
                 <ul className="main-nav">
                     <li className="main-nav__item">
-                        <NavLink className='main-nav__link' to='/'>Home</NavLink>
+                        <NavLink className='main-nav__link' exact to='/'>Home</NavLink>
                     </li>
                     <li className="main-nav__item">
                         <NavLink className='main-nav__link' to='/movies'>Movies</NavLink>
                     </li>
                     <li className="main-nav__item">
-                        <NavLink className='main-nav__link' to='/tvs'>TV-Show</NavLink>
+                        <NavLink className='main-nav__link' to='/tv'>TV-Show</NavLink>
                     </li>
                 </ul>
             </Box>
