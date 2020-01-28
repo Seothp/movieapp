@@ -13,10 +13,17 @@ const useStyles = makeStyles({
     },
     fz4: {
         fontSize: '32px'
+    },
+    mxw720: {
+        maxWidth: '720px'
+    },
+    clr444: {
+        color: '#444444'
     }
 })
 export const Home = () => {
     const classes = useStyles();
+    
     return(
         <Container component='div'>
             <Box component='header' className='header'>
@@ -40,7 +47,7 @@ export const Home = () => {
             </Box>
             
             <Box component='main' m={2}>
-                <Box component='p' className={classes.mb4, classes.fz4} >
+                <Box component='p' className={[classes.mb4, classes.fz4, classes.mxw720, classes.clr444]} >
                     Hello, it's app for search info about movies or tv shows. You need to choose search area. 
                     Get started:
                 </Box>
