@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink, Link } from 'react-router-dom'
 import { TextField, Container, Box, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles'
+import { Header } from '../components/header/header'
 
 const useStyles = makeStyles({
     ml2: {
@@ -26,25 +27,7 @@ export const Home = () => {
     
     return(
         <Container component='div'>
-            <Box component='header' className='header'>
-                <Box component='nav' m={2}>
-                    <ul className="main-nav">
-                        <li className="main-nav__item">
-                            <NavLink className='main-nav__link' to='/'>Home</NavLink>
-                        </li>
-                        <li className="main-nav__item">
-                            <NavLink className='main-nav__link' to='/movies'>Movies</NavLink>
-                        </li>
-                        <li className="main-nav__item">
-                            <NavLink className='main-nav__link' to='/tvs'>TV-Show</NavLink>
-                        </li>
-                    </ul>
-                </Box>
-                <Box className="search-menu" m={2}>
-                    <TextField type='text' className='search-menu__input'/>
-                    <Button variant='contained' color='primary' size='small' className={classes.ml2}>Search</Button>
-                </Box >
-            </Box>
+            <Header classes={classes}/>
             
             <Box component='main' m={2}>
                 <Box component='p' className={[classes.mb4, classes.fz4, classes.mxw720, classes.clr444]} >
