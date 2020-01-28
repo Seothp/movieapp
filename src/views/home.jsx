@@ -48,7 +48,7 @@ export const Home = () => {
             
             <Box component='main' m={2}>
                 <Box component='p' className={[classes.mb4, classes.fz4, classes.mxw720, classes.clr444]} >
-                    Hello, it's app for search info about movies or tv shows. You need to choose search area. 
+                    Hello, it's app for search info about movies or tv shows. You need to choose search area. <br/>
                     Get started:
                 </Box>
                 <Box component='div' >
