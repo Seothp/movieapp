@@ -15,7 +15,7 @@ export const TvShows = () => {
                 <Route exact path='/tv' >
                     <TvShowList />
                 </Route>
-                <Route path='/movies/:id' >
+                <Route path='/tv/:id' >
                     <TvShow />
                 </Route>
             </Switch>
