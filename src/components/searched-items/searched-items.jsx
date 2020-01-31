@@ -29,9 +29,13 @@ export const SearchedItems = ({searchValue, searchArea}) => {
         }
     }
     return (
-        <Grid container className={classes.searchedItems}>
-            {getComponent()}
-        </Grid>
+        <>
+            {searchValue &&
+                <Grid container className={classes.searchedItems}>
+                    {getComponent()}
+                </Grid>
+            }
+        </>
     )
 }
 
