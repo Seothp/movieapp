@@ -44,7 +44,7 @@ const cardLinkStyles = {
 
 export const MoviesList = () => {
     const [ lists, setLists ] = useState([]);
-    const [page, setPage] = useState(1);
+    const [ page, setPage ] = useState(1);
 
     useEffect(() => {
         fetchMovies()
@@ -105,7 +105,7 @@ export const MoviesList = () => {
             alignItems="stretch"
             >
                 {lists.map((item) => (
-                    <Link to={`/movies/:${item.id}` }
+                    <Link to={`/movies/${item.id}` }
                     style={cardLinkStyles}
                     key={item.id}>
                         <Card 
