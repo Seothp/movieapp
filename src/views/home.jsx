@@ -1,16 +1,29 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 import { Container, Box, Typography } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles'
+
 import { Header } from '../components/header/header'
 
-export const Home = ({classes}) => {
-    
-    return(
+const useStyles = makeStyles({
+    home: {
+        display: 'inline-block',
+        marginBottom: '32px',
+        fontSize: '32px',
+        maxWidth: '720px',
+        color: '#444444',
+    },
+})
+
+
+export const Home = () => {
+    const classes = useStyles();
+    return (
         <Container component='div'>
-            <Header classes={classes}/>
+            <Header />
             
             <Box component='main' m={2}>
-                <Typography component='p' className={[classes.mb4, classes.fz4, classes.mxw720, classes.clr444]} >
+                <Typography component='p' className={ classes.home } >
                     Hello, it's app for search info about movies or tv shows. You need to choose search area. <br/>
                     Get started:
                 </Typography>
