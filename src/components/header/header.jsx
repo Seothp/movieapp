@@ -3,6 +3,8 @@ import { NavLink } from 'react-router-dom'
 import { Box, TextField, Button } from '@material-ui/core'
 import { makeStyles  } from '@material-ui/core/styles';
 
+import { SearchedItems } from '../searched-items/searched-items'
+
 const useStyles = makeStyles({
     header: {
         marginBottom: 24,
@@ -32,6 +34,7 @@ export const Header = () => {
                 <TextField type='text' className='search-menu__input'/>
                 <Button variant='contained' color='primary' size='small' className={classes.ml2}>Search</Button>
             </Box >
+            <SearchedItems />
         </Box>
     )
 }
