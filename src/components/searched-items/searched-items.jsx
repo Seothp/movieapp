@@ -2,11 +2,15 @@ import React, { useState } from 'react';
 import { Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
+import { MoviesSearchList } from '../movies-search-list/movies-search-list';
+import { TvShowsSearchList } from '../tv-shows-search-list/tv-shows-search-list';
+
 const useStyles = makeStyles({
     searchedItems: {
         position: 'absolute',
-        top: 0,
+        bottom: -1,
         right: 0,
+        width: 270
     }
 })
 
@@ -22,7 +26,7 @@ export const SearchedItems = ({searchValue, searchArea}) => {
                     );
             case 'tv':
                 return (
-                    <TvShowSearchList searchValue={searchValue} />
+                    <TvShowsSearchList searchValue={searchValue} />
                 )
             default:
                 return null;
@@ -32,6 +36,7 @@ export const SearchedItems = ({searchValue, searchArea}) => {
         <>
             {searchValue &&
                 <Grid container className={classes.searchedItems}>
+                    {searchValue}
                     {getComponent()}
                 </Grid>
             }
