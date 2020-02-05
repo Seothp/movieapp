@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom'
 import { Box, TextField, Button, MenuItem } from '@material-ui/core'
 import { makeStyles  } from '@material-ui/core/styles';
+
+import { TMD_URL, TMD_API_KEY, TMD_IMG_URL } from '../../constants'
 
 import { SearchedItems } from '../searched-items/searched-items'
 
@@ -31,10 +33,11 @@ const useStyles = makeStyles({
     }
 })
 export const Header = () => {
-    let [ searchValue, setSearchValue] = useState('');
-    let [ searchArea, setSearchArea ] = useState('');
 
     const classes = useStyles();
+
+    let [ searchValue, setSearchValue] = useState(' ^_^_/^');
+    let [ searchArea, setSearchArea ] = useState('');
 
     const handleInputChange = (e) => {
         setSearchValue(e.target.value);
@@ -69,10 +72,11 @@ export const Header = () => {
                 <TextField type='text' 
                     className={classes.mt2}
                     value={searchValue} 
-                    onChange={handleInputChange}/>
+                    onChange={handleInputChange}
+                    disabled/>
                 <Button variant='contained' color='primary' size='small' className={classes.button}>Search</Button>
             </Box >
-            <SearchedItems searchValue={searchValue} searchArea={searchArea} />
+            <SearchedItems searchValue={searchValue} />
         </Box>
     )
 }
