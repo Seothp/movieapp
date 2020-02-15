@@ -79,30 +79,33 @@ export const MoviesList = () => {
     return (
         <>  
             <Typography 
-            variant='subtitle2' 
-            component='span' 
-            style={{'margin': '16px', 'display': 'inline-block'}}>
+                variant='subtitle2' 
+                component='span' 
+                style={{'margin': '16px', 'display': 'inline-block'}}
+            >
                 Current page: {page}
             </Typography>
             <Button 
-            onClick={backPage} 
-            variant='contained' 
-            color='primary' 
-            style={{'marginRight': '16px'}}>
+                onClick={backPage} 
+                variant='contained' 
+                color='primary' 
+                style={{'marginRight': '16px'}}
+            >
                 back
             </Button>
             <Button 
-            onClick={nextPage} 
-            variant='contained' 
-            color='primary'>
+                onClick={nextPage} 
+                variant='contained' 
+                color='primary'
+            >
                 next
             </Button>
             <Grid 
-            className='movie-list'
-            container
-            direction="row"
-            justify="space-around"
-            alignItems="stretch"
+                className='movie-list'
+                container
+                direction="row"
+                justify="space-around"
+                alignItems="stretch"
             >
                 {lists.map((item) => (
                     <Link to={`/movies/${item.id}` }
@@ -112,12 +115,13 @@ export const MoviesList = () => {
                         className={classes.card}>
                             {item.poster_path && 
                                 <CardMedia 
-                                image={`${TMD_IMG_URL}w300${item.poster_path}`} 
-                                title="poster"
-                                className={classes.media}/>
+                                    image={`${TMD_IMG_URL}w300${item.poster_path}`} 
+                                    title="poster"
+                                    className={classes.media}
+                                />
                             }
                             <Typography variant='h5' component='h3' className={classes.movieTitle}>
-                            {item.title}
+                                {item.title}
                             </Typography>
                             <Typography variant='subtitle2' component='span' className={classes.inlineSubtitle}>
                                 Votes:

@@ -39,7 +39,7 @@ const cardLinkStyles = {
     flexShrink: 0,
     marginBottom: 24,
 }
-   
+
 
 export const TvShowList = () => {
     const [ list, setList ] = useState([]);
