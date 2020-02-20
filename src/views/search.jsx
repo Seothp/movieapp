@@ -49,9 +49,12 @@ export const Search = () => {
     }
 
     useEffect(() => {
-        fetch(`${TMD_URL}search/${searchArea}?${TMD_API_KEY}&page=${page}&query=${searchValue}`)
-            .then(res => res.json())
-            .then(result => setList(result.results))
+        if (searchValue) {
+            fetch(`${TMD_URL}search/${searchArea}?${TMD_API_KEY}&page=${page}&query=${searchValue}`)
+                .then(res => res.json())
+                .then(result => setList(result.results))
+        }
+        
     }, [searchValue, page, searchArea])
 
     const classes = useStyles();
