@@ -1,17 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom'
-import { Box, TextField, Button, MenuItem } from '@material-ui/core'
+import { Box } from '@material-ui/core'
 import { makeStyles  } from '@material-ui/core/styles';
-
-import { TMD_URL, TMD_API_KEY, TMD_IMG_URL } from '../../constants'
-
-import { SearchedItems } from '../searched-items/searched-items'
-
-const areas = [
-    { value: 'Movies' },
-    { value: 'Tv' }
-]
-
 
 const useStyles = makeStyles({
     header: {
@@ -32,6 +22,7 @@ const useStyles = makeStyles({
         marginLeft: 16,
     }
 })
+
 export const Header = () => {
 
     const classes = useStyles();

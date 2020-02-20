@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Container, TextField, Box, Button, makeStyles, MenuItem, Grid } from '@material-ui/core';
 
 import { Header } from '../components/header/header'
+import { List } from '../components/list/list'
 import { TMD_URL, DISCOVER_PATH, TMD_API_KEY, TMD_IMG_URL } from '../constants'
 
 const useStyles = makeStyles({
@@ -38,7 +39,7 @@ export const Search = () => {
     let [ searchValue, setSearchValue] = useState('');
     useEffect(() => {
         fetchList(searchValue)
-    })
+    }, [searchValue])
     let [ list, setList ] = useState([]);
     let [ page, setPage ] = useState(1);
 
@@ -71,14 +72,7 @@ export const Search = () => {
                     <Button variant='contained' color='primary' className={classes.button}>Search</Button>
                 </Box>
                 <Grid>
-                    {list && list.map(item => (
-                        <div>
-                            {item.title}
-                            {item.name}
-                        </div>
-                    ))
-
-                    }
+                    <List type={searchArea} list={list}/>
                 </Grid>
             </Container>
         )
