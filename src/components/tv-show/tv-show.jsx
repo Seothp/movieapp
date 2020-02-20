@@ -8,17 +8,13 @@ export const TvShow = () => {
     const [ tvShow, setTvShow ] = useState({});
     const { id } = useParams();
 
-    const fetchMovie = () => {
+    useEffect(() => {
         fetch(`${TMD_URL}tv/${id}?${TMD_API_KEY}`)
             .then(res => res.json())
             .then(result => {
                 setTvShow(result);
             })
-    }
-
-    useEffect(() => {
-        fetchMovie()
-    }, [])
+    }, [id])
 
     return (
         <Box>

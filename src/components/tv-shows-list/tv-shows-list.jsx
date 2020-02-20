@@ -38,20 +38,14 @@ export const TvShowList = () => {
     const classes = useStyles()
 
     useEffect(() => {
-        fetchMovies()
-    }, [])
-
-    useEffect(() => {
-        fetchMovies()
-        scrollToTop()
-    }, [page])
-    const fetchMovies = () => {
         fetch(`${TMD_URL}${DISCOVER_PATH}tv?${TMD_API_KEY}&page=${page}`)
             .then(res => res.json())
             .then(result => {
                 setList(result.results);
-            })
-    }
+            });
+        scrollToTop()
+    }, [page])
+
     const nextPage = () => {
         if (page < 500) {
             setPage(page + 1)

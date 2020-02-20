@@ -37,20 +37,14 @@ export const MoviesList = () => {
     const [ page, setPage ] = useState(1);
 
     useEffect(() => {
-        fetchMovies()
-    }, [])
-
-    useEffect(() => {
-        fetchMovies()
-        scrollToTop()
-    }, [page])
-    const fetchMovies = () => {
         fetch(`${TMD_URL}${DISCOVER_PATH}movie?${TMD_API_KEY}&page=${page}`)
             .then(res => res.json())
             .then(result => {
                 setList(result.results);
-            })
-    }
+            });
+        scrollToTop()
+    }, [page])
+
     const nextPage = () => {
         if (page < 500) {
             setPage(page + 1)
@@ -65,7 +59,9 @@ export const MoviesList = () => {
         document.body.scrollTop = 0; // For Safari
         document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
     }
+    
     const classes = useStyles()
+
     return (
         <>  
             <Typography 
