@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Card, CardMedia, Grid, Typography, Button, Box } from '@material-ui/core';
+import { Typography, Button, Box } from '@material-ui/core';
 import { makeStyles  } from '@material-ui/core/styles';
-import { Link } from 'react-router-dom'
 
 import { List } from '../list/list'
-import { TMD_URL, DISCOVER_PATH, TMD_API_KEY, TMD_IMG_URL, TV_SHOW_PATH } from '../../constants'
+import { TMD_URL, DISCOVER_PATH, TMD_API_KEY } from '../../constants'
 
 const useStyles = makeStyles({
     card: {
@@ -31,16 +30,6 @@ const useStyles = makeStyles({
         marginBottom: 32,
     },
 });
-
-const cardLinkStyles = {
-    display: 'flex',
-    boxSizing: 'border-box',
-    width: '280px',
-    textDecoration: 'none',
-    flexShrink: 0,
-    marginBottom: 24,
-}
-
 
 export const TvShowList = () => {
     const [ list, setList ] = useState([]);
@@ -100,36 +89,6 @@ export const TvShowList = () => {
                 next
             </Button>
             <List type='tv' list={list}/>
-            {/* {list.map((item) => (
-                <Link to={`/tv/${item.id}` }
-                style={cardLinkStyles}
-                key={item.id}>
-                    <Card 
-                    className={classes.card}>
-                        {item.poster_path && 
-                            <CardMedia 
-                            image={`${TMD_IMG_URL}w300${item.poster_path}`} 
-                            title="poster"
-                            className={classes.media}/>
-                        }
-                        <Typography variant='h5' component='h3' className={classes.movieTitle}>
-                            {item.name}
-                        </Typography>
-                        <Typography variant='subtitle2' component='span' className={classes.inlineSubtitle}>
-                            Votes:
-                        </Typography>
-                        <Typography variant='body2' component='span'>
-                            {item.vote_average}
-                        </Typography>
-                        <Typography variant='subtitle2' component='p'>
-                            Discription:
-                        </Typography>
-                        <Typography variant='body2' component='p'>
-                            {item.overview}
-                        </Typography>
-                    </Card>
-                </Link>
-            ))} */}
             <Box className={classes.buttonBox}>
                 <Button onClick={backPage} variant='contained' color='primary' style={{'marginRight': '32px'}}>
                     back

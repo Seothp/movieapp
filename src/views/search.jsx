@@ -3,7 +3,7 @@ import { Container, TextField, Box, Button, makeStyles, MenuItem, Grid } from '@
 
 import { Header } from '../components/header/header'
 import { List } from '../components/list/list'
-import { TMD_URL, DISCOVER_PATH, TMD_API_KEY, TMD_IMG_URL } from '../constants'
+import { TMD_URL, TMD_API_KEY } from '../constants'
 
 const useStyles = makeStyles({
     search: {
@@ -37,9 +37,6 @@ const OPTIONS = [
 export const Search = () => {
     let [ searchArea, setSearchArea ] = useState('movie');
     let [ searchValue, setSearchValue] = useState('');
-    useEffect(() => {
-        fetchList(searchValue)
-    }, [searchValue])
     let [ list, setList ] = useState([]);
     let [ page, setPage ] = useState(1);
 
@@ -51,11 +48,12 @@ export const Search = () => {
         setSearchArea(e.target.value)
     }
 
-    const fetchList = (searchValue) => {
+    useEffect(() => {
         fetch(`${TMD_URL}search/${searchArea}?${TMD_API_KEY}&page=${page}&query=${searchValue}`)
             .then(res => res.json())
             .then(result => setList(result.results))
-    }
+    }, [searchValue, page, searchArea])
+
     const classes = useStyles();
     return (
             <Container component='div'>
