@@ -26,8 +26,8 @@ export const Movie = () => {
                 <Grid container >
                     <div className="img-wrapper">
                         <img 
-                        alt={`${movie.title} poster`}
-                        src={`${TMD_IMG_URL}w300${movie.poster_path}`}
+                            alt={`${movie.title} poster`}
+                            src={`${TMD_IMG_URL}w300${movie.poster_path}`}
                         />  
                     </div>
                     <Box className="movie-text-info" style={{maxWidth: 900, marginLeft: 16}}>

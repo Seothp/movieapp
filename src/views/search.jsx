@@ -62,14 +62,24 @@ export const Search = () => {
             <Container component='div'>
                 <Header />
                 <Box component='div' className={classes.search}>
-                    <TextField select label='area' className={classes.select} onChange={handleSelectChange} value={searchArea}>
+                    <TextField 
+                        select 
+                        label='area' 
+                        className={classes.select} 
+                        onChange={handleSelectChange} 
+                        value={searchArea}
+                    >
                         {OPTIONS.map(option => (
                             <MenuItem key={option.value} value={option.value}>
                                 {option.value}
                             </MenuItem>
                         ))}
                     </TextField>
-                    <TextField className={classes.input} onChange={handleInputChange} value={searchValue}/>
+                    <TextField 
+                        className={classes.input} 
+                        onChange={handleInputChange} 
+                        value={searchValue}
+                    />
                     <Button variant='contained' color='primary' className={classes.button}>Search</Button>
                 </Box>
                 <Grid>

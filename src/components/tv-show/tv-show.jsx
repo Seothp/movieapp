@@ -23,8 +23,8 @@ export const TvShow = () => {
                 <Grid container >
                     <div >
                         <img 
-                        alt={`${tvShow.title} poster`}
-                        src={`${TMD_IMG_URL}w300${tvShow.poster_path}`}
+                            alt={`${tvShow.title} poster`}
+                            src={`${TMD_IMG_URL}w300${tvShow.poster_path}`}
                         />  
                     </div>
                     <Box style={{maxWidth: 900, marginLeft: 16}}>

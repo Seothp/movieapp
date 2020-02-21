@@ -64,22 +64,25 @@ export const TvShowList = () => {
     return (
         <div className="tv-shows">
             <Typography 
-            variant='subtitle2' 
-            component='span' 
-            style={{'margin': '16px', 'display': 'inline-block'}}>
+                variant='subtitle2' 
+                component='span' 
+                style={{'margin': '16px', 'display': 'inline-block'}}
+            >
                 Current page: {page}
             </Typography>
             <Button 
-            onClick={backPage} 
-            variant='contained' 
-            color='primary' 
-            style={{'marginRight': '16px'}}>
+                onClick={backPage} 
+                variant='contained' 
+                color='primary' 
+                style={{'marginRight': '16px'}}
+            >
                 back
             </Button>
             <Button 
-            onClick={nextPage} 
-            variant='contained' 
-            color='primary'>
+                onClick={nextPage} 
+                variant='contained' 
+                color='primary'
+            >
                 next
             </Button>
             <List type='tv' list={list}/>

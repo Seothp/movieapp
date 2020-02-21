@@ -19,7 +19,7 @@ export const Poster = ({posterPath}) => {
     return (
         <CardMedia 
             src={`${TMD_IMG_URL}w300${posterPath}`} 
-            onError={(e) => { e.target.src = 'https://imgur.com/Ax000FS.png'}}
+            onError={(e) => e.target.src = 'https://imgur.com/Ax000FS.png'}
             title="poster"
             className={classes.media}
             component='img'
