@@ -69,7 +69,6 @@ export const List = ({list, type}) => {
             return (
                 <Grid
                     container
-                    className={classes.media}
                     wrap='wrap'
                     justify='space-between'
                 >
