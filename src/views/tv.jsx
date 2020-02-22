@@ -2,9 +2,10 @@ import React from 'react';
 import { Container } from '@material-ui/core';
 import { Switch, Route } from 'react-router-dom';
 
+import { Header } from '../components/header/header';
 import { TvShowList } from '../components/tv-shows-list/tv-shows-list';
 import { TvShow } from '../components/tv-show/tv-show';
-import { Header } from '../components/header/header';
+import { TvSeason } from '../components/tv-season/tv-season';
 
 export const TvShows = () => {
     
@@ -19,9 +20,7 @@ export const TvShows = () => {
                     <TvShow />
                 </Route>
                 <Route exact path='/tv/:id/season/:season_number' >
-                    <div>
-                        just for test
-                    </div>
+                    <TvSeason />
                 </Route>
             </Switch>
         </Container>

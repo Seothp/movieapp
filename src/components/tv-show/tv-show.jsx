@@ -6,12 +6,11 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Poster } from '../poster/poster';
 
 import { TMD_URL, TMD_API_KEY, TMD_IMG_URL } from '../../constants';
-import './tv-show.css';
 
 const cardLinkStyles = {
     display: 'flex',
     boxSizing: 'border-box',
-    width: '280px',
+    width: '140px',
     textDecoration: 'none',
     flexShrink: 0,
     marginBottom: 24,
@@ -20,8 +19,8 @@ const cardLinkStyles = {
 const useStyles = makeStyles({
     card: {
         boxSizing: 'border-box',
-        width: 280,
-        padding: 24,
+        width: '100%',
+        padding: 8,
         flexGrow: 0,
         flexShrink: 0,
     }
@@ -85,7 +84,7 @@ export const TvShow = () => {
                         {tvShow.seasons && tvShow.seasons.map(season => (
                             <Link style={cardLinkStyles} key={season.id} to={`/tv/${id}/season/${season.season_number}`}>
                                 <Card className={classes.card}>
-                                    <Poster posterPath={season.poster_path}/>
+                                    <Poster posterPath={season.poster_path} width={'100%'} height={180}/>
                                     {season.name}
                                 </Card>
                             </Link>
