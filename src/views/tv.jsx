@@ -22,6 +22,9 @@ export const TvShows = () => {
                 <Route exact path='/tv/:id/season/:season_number' >
                     <TvSeason />
                 </Route>
+                <Route exact path='/tv/:id/season/:season_number/episode/:episode_number' >
+                    <div className="test">test</div>
+                </Route>
             </Switch>
         </Container>
     )
