@@ -1,5 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Container, TextField, Box, Button, makeStyles, MenuItem, Grid } from '@material-ui/core';
+import {
+    Container,
+    TextField,
+    Box,
+    Button,
+    makeStyles,
+    MenuItem,
+    Grid,
+    Typography,
+    } from '@material-ui/core';
 
 import { Header } from '../components/header/header'
 import { List } from '../components/list/list'
@@ -57,6 +66,17 @@ export const Search = () => {
         
     }, [searchValue, page, searchArea])
 
+    const nextPage = () => {
+        if (page < 500) {
+            setPage(page + 1)
+        }
+    }
+    const backPage = () => {
+        if (page > 1) {
+            setPage(page - 1)
+        }
+    }
+
     const classes = useStyles();
     return (
             <Container component='div'>
@@ -80,11 +100,58 @@ export const Search = () => {
                         onChange={handleInputChange} 
                         value={searchValue}
                     />
-                    <Button variant='contained' color='primary' className={classes.button}>Search</Button>
+                    <Button 
+                        variant='contained' 
+                        color='primary'
+                        className={classes.button}
+                    >
+                        Search
+                    </Button>
                 </Box>
+                <Typography 
+                    variant='subtitle2' 
+                    component='span' 
+                    style={{'margin': '16px', 'display': 'inline-block'}}
+                >
+                    Current page: {page}
+                </Typography>
+                <Button 
+                    onClick={backPage} 
+                    variant='contained' 
+                    color='primary' 
+                    style={{'marginRight': '16px'}}
+                >
+                    back
+                </Button>
+                <Button 
+                    onClick={nextPage} 
+                    variant='contained' 
+                    color='primary'
+                >
+                    next
+                </Button>
                 <Grid>
                     <List type={searchArea} list={list}/>
                 </Grid>
+                {list &&
+                    <Box className={classes.buttonBox}>
+                        <Button 
+                            onClick={backPage} 
+                            variant='contained' 
+                            color='primary' 
+                            style={{'marginRight': '32px'}}
+                        >
+                            back
+                        </Button>
+                        <Button 
+                            onClick={nextPage} 
+                            variant='contained' 
+                            color='primary'
+                        >
+                            next
+                        </Button>
+                    </Box>
+                }
             </Container>
         )
 }
