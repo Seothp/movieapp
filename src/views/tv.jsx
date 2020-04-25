@@ -9,7 +9,6 @@ import { TvSeason } from '../components/tv-season/tv-season';
 import { TvEpisode } from '../components/tv-episode/tv-episode'
 
 export const TvShows = () => {
-    
     return (
         <Container component='div'>
             <Header />

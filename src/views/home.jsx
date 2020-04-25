@@ -14,14 +14,11 @@ const useStyles = makeStyles({
         color: '#444444',
     },
 })
-
-
 export const Home = () => {
     const classes = useStyles();
     return (
         <Container component='div'>
             <Header />
-            
             <Box component='main' m={2}>
                 <Typography component='p' className={ classes.home } >
                     Hello, it's app for search info about movies or tv shows. You need to choose search area. <br/>
@@ -35,4 +32,3 @@ export const Home = () => {
         </Container>
     )
 }
-

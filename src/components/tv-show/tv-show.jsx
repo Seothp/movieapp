@@ -15,7 +15,6 @@ const cardLinkStyles = {
     flexShrink: 0,
     marginBottom: 24,
 }
-
 const useStyles = makeStyles({
     card: {
         boxSizing: 'border-box',
@@ -23,13 +22,15 @@ const useStyles = makeStyles({
         padding: 8,
         flexGrow: 0,
         flexShrink: 0,
+    }, 
+    tvShowInfo: {
+        maxWidth: '900px', 
+        marginLeft: '16px' 
     }
 });
-
 export const TvShow = () => {
-    const [ tvShow, setTvShow ] = useState({});
+    const [tvShow, setTvShow] = useState({});
     const { id } = useParams();
-
     useEffect(() => {
         fetch(`${TMD_URL}tv/${id}?${TMD_API_KEY}`)
             .then(res => res.json())
@@ -37,61 +38,57 @@ export const TvShow = () => {
                 setTvShow(result);
             })
     }, [id])
-
     const classes = useStyles();
-
     return (
         <Box>
             <Box >
-            {tvShow && 
-                <Grid container >
-                    <div >
-                        <img 
-                            alt={`${tvShow.title} poster`}
-                            src={`${TMD_IMG_URL}w300${tvShow.poster_path}`}
-                        />  
-                    </div>
-                    <Box style={{maxWidth: 900, marginLeft: 16}}>
-                        <h3 className="title">
-                            {tvShow.title}
-                        </h3>
-                        <span className="tvShow-release-date">
-                            First episode: {tvShow.first_air_date}
-                        </span>
-                        <p className="tvShow-runtime">
-                            Episode runtime(minutes): {tvShow.episode_run_time}
+                {tvShow &&
+                    <Grid container >
+                        <div >
+                            <img
+                                alt={`${tvShow.title} poster`}
+                                src={`${TMD_IMG_URL}w300${tvShow.poster_path}`}
+                            />
+                        </div>
+                        <Box className={classes.tvShowInfo}>
+                            <h3 className="title">
+                                {tvShow.title}
+                            </h3>
+                            <span className="tvShow-release-date">
+                                First episode: {tvShow.first_air_date}
+                            </span>
+                            <p className="tvShow-runtime">
+                                Episode runtime(minutes): {tvShow.episode_run_time}
+                            </p>
+                            <p className="tvShow-status">
+                                Seasons: {tvShow.number_of_seasons}
+                            </p>
+                            <p className="tvShow-status">
+                                Episodes: {tvShow.number_of_episodes}
+                            </p>
+                            <p className="tvShow-vote-average">
+                                Rating: {tvShow.vote_average}({tvShow.vote_count})
                         </p>
-                        <p className="tvShow-status">
-                            Seasons: {tvShow.number_of_seasons}
-                        </p>
-                        <p className="tvShow-status">
-                            Episodes: {tvShow.number_of_episodes}
-                        </p>
-                        <p className="tvShow-vote-average">
-                            Rating: {tvShow.vote_average}({tvShow.vote_count})
-                        </p>
-                        <p className="tvShow-disc">
-                            Discription: <br/>{tvShow.overview}
-                        </p>
-                        
-                    </Box>
-                    <Grid
-                        container
-                        wrap='wrap'
-                        justify='space-between'
-                        
-                    >
-                        {tvShow.seasons && tvShow.seasons.map(season => (
-                            <Link style={cardLinkStyles} key={season.id} to={`/tv/${id}/season/${season.season_number}`}>
-                                <Card className={classes.card}>
-                                    <Poster posterPath={season.poster_path} width={'100%'} height={180}/>
-                                    {season.name}
-                                </Card>
-                            </Link>
-                        ))}
+                            <p className="tvShow-disc">
+                                Discription: <br />{tvShow.overview}
+                            </p>
+                        </Box>
+                        <Grid
+                            container
+                            wrap='wrap'
+                            justify='space-between'
+                        >
+                            {tvShow.seasons && tvShow.seasons.map(season => (
+                                <Link style={cardLinkStyles} key={season.id} to={`/tv/${id}/season/${season.season_number}`}>
+                                    <Card className={classes.card}>
+                                        <Poster posterPath={season.poster_path} width={'100%'} height={180} />
+                                        {season.name}
+                                    </Card>
+                                </Link>
+                            ))}
+                        </Grid>
                     </Grid>
-                </Grid>
-            }
+                }
             </Box>
         </Box>
     )

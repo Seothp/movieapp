@@ -1,13 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom'
+import { makeStyles } from '@material-ui/core/styles'
 import { Box, Grid } from '@material-ui/core';
 
 import { TMD_URL, TMD_API_KEY, TMD_IMG_URL } from '../../constants'
 
-export const Movie = () => {
-    const [ movie, setMovie ] = useState({})
-    const { id } = useParams();
+const useStyles = makeStyles({
+    movieTextInfo: { 
+        maxWidth: 900, 
+        marginLeft: 16
+    }
+})
 
+export const Movie = () => {
+    const [movie, setMovie] = useState({})
+    const { id } = useParams();
     useEffect(() => {
         fetch(`${TMD_URL}movie/${id}?${TMD_API_KEY}`)
             .then(res => res.json())
@@ -15,18 +22,18 @@ export const Movie = () => {
                 setMovie(result);
             })
     }, [id])
-
+    const classes = useStyles()
     return (
         <Box >
-            {movie && 
+            {movie &&
                 <Grid container >
                     <div className="img-wrapper">
-                        <img 
+                        <img
                             alt={`${movie.title} poster`}
                             src={`${TMD_IMG_URL}w300${movie.poster_path}`}
-                        />  
+                        />
                     </div>
-                    <Box className="movie-text-info" style={{maxWidth: 900, marginLeft: 16}}>
+                    <Box className={`movie-text-info ${classes.movieTextInfo}`}>
                         <h3 className="title">
                             {movie.title}
                         </h3>
@@ -49,12 +56,11 @@ export const Movie = () => {
                             Revenue: ${movie.revenue}
                         </p>
                         <p className="movie-disc">
-                            Discription: <br/>{movie.overview}
+                            Discription: <br />{movie.overview}
                         </p>
                     </Box>
                 </Grid>
             }
-            
         </Box>
     )
 }

@@ -6,14 +6,9 @@ import { Movies } from './views/movies.jsx';
 import { TvShows } from './views/tv.jsx';
 import { Search } from './views/search.jsx';
 
-
 import './App.css';
 
-
-
-
 function App() {
-
   return (
     <BrowserRouter>
       <div className="App">

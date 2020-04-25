@@ -3,7 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { Box, Grid, Card } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
-import { Poster } from '../poster/poster' 
+import { Poster } from '../poster/poster'
 import { TMD_URL, TMD_API_KEY } from '../../constants'
 
 const cardLinkStyles = {
@@ -14,7 +14,6 @@ const cardLinkStyles = {
     flexShrink: 0,
     marginBottom: 24,
 }
-
 const useStyles = makeStyles({
     card: {
         boxSizing: 'border-box',
@@ -24,11 +23,14 @@ const useStyles = makeStyles({
         flexShrink: 0,
         display: 'flex',
         flexDirection: 'column',
+    },
+    movieTextInfo: {
+        maxWidth: '900px', 
+        marginLeft: '16px' 
     }
 });
-
 export const TvSeason = () => {
-    let [ tvSeason, seTvSeason ] = useState({})
+    let [tvSeason, seTvSeason] = useState({})
     const { id, season_number } = useParams()
 
     useEffect(() => {
@@ -40,20 +42,19 @@ export const TvSeason = () => {
     }, [id, season_number])
 
     const classes = useStyles()
-
     return (
         <Box className="tv-season">
-            {tvSeason && 
+            {tvSeason &&
                 <>
                     <Grid container >
-                        <Poster posterPath={tvSeason.poster_path}/>
-                        <Box className="movie-text-info" style={{maxWidth: 900, marginLeft: 16}}>
+                        <Poster posterPath={tvSeason.poster_path} />
+                        <Box className={`movie-text-info ${classes.movieTextInfo}`} >
                             <h3 className="tv-season-name">
                                 {tvSeason.name}
                             </h3>
                             <div className="tv-season-discr">
                                 <b>Discription:</b>
-                                <p>{tvSeason.overview? tvSeason.overview: 'Not found'}</p>
+                                <p>{tvSeason.overview ? tvSeason.overview : 'Not found'}</p>
                             </div>
                         </Box>
                     </Grid>
@@ -61,12 +62,11 @@ export const TvSeason = () => {
                         container
                         wrap='wrap'
                         justify='space-between'
-                        
                     >
                         {tvSeason.episodes && tvSeason.episodes.map(episode => (
-                            <Link 
-                                style={cardLinkStyles} 
-                                key={episode.id} 
+                            <Link
+                                style={cardLinkStyles}
+                                key={episode.id}
                                 to={`/tv/${id}/season/${season_number}/episode/${episode.episode_number}`}
                             >
                                 <Card className={classes.card}>
@@ -79,5 +79,5 @@ export const TvSeason = () => {
                 </>
             }
         </Box>
-    )    
+    )
 }

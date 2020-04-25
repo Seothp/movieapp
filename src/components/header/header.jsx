@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom'
 import { Box } from '@material-ui/core'
-import { makeStyles  } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
     header: {
@@ -24,9 +24,7 @@ const useStyles = makeStyles({
 })
 
 export const Header = () => {
-
     const classes = useStyles();
-
     return (
         <Box component='header' className={`header ${classes.header}`}>
             <Box component='nav' m={2}>

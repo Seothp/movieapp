@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Typography, Button, Box } from '@material-ui/core';
-import { makeStyles  } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 
 import { List } from '../list/list'
 
-import { TMD_URL, DISCOVER_PATH, TMD_API_KEY } from '../../constants'
+import { TMD_URL, DISCOVER_PATH, TMD_API_KEY, MAX_PAGE, MIN_PAGE } from '../../constants'
 
 const useStyles = makeStyles({
     card: {
@@ -24,18 +24,27 @@ const useStyles = makeStyles({
     },
     inlineSubtitle: {
         marginRight: 8,
-    }, 
+    },
     buttonBox: {
         display: 'flex',
         justifyContent: 'center',
         marginBottom: 32,
     },
+    mr2: {
+        marginRight: '16px'
+    },
+    mr4: {
+        marginRight: '32px'
+    },
+    currentPage: {
+        margin: '16px', 
+        display: 'inline-block' 
+    }
 });
 
 export const MoviesList = () => {
-    const [ list, setList ] = useState([]);
-    const [ page, setPage ] = useState(1);
-
+    const [list, setList] = useState([]);
+    const [page, setPage] = useState(1);
     useEffect(() => {
         fetch(`${TMD_URL}${DISCOVER_PATH}movie?${TMD_API_KEY}&page=${page}`)
             .then(res => res.json())
@@ -44,14 +53,13 @@ export const MoviesList = () => {
             });
         scrollToTop()
     }, [page])
-
     const nextPage = () => {
-        if (page < 500) {
+        if (page < MAX_PAGE) {
             setPage(page + 1)
         }
     }
     const backPage = () => {
-        if (page > 1) {
+        if (page > MIN_PAGE) {
             setPage(page - 1)
         }
     }
@@ -59,36 +67,34 @@ export const MoviesList = () => {
         document.body.scrollTop = 0; // For Safari
         document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
     }
-    
     const classes = useStyles()
-
     return (
-        <>  
-            <Typography 
-                variant='subtitle2' 
-                component='span' 
-                style={{'margin': '16px', 'display': 'inline-block'}}
+        <>
+            <Typography
+                variant='subtitle2'
+                component='span'
+                className={classes.currentPage}
             >
                 Current page: {page}
             </Typography>
-            <Button 
-                onClick={backPage} 
-                variant='contained' 
-                color='primary' 
-                style={{'marginRight': '16px'}}
+            <Button
+                onClick={backPage}
+                variant='contained'
+                color='primary'
+                className={classes.mr2}
             >
                 back
             </Button>
-            <Button 
-                onClick={nextPage} 
-                variant='contained' 
+            <Button
+                onClick={nextPage}
+                variant='contained'
                 color='primary'
             >
                 next
             </Button>
-            <List type='movie' list={list}/>
+            <List type='movie' list={list} />
             <Box className={classes.buttonBox}>
-                <Button onClick={backPage} variant='contained' color='primary' style={{'marginRight': '32px'}}>
+                <Button onClick={backPage} variant='contained' color='primary' className={classes.mr4}>
                     back
                 </Button>
                 <Button onClick={nextPage} variant='contained' color='primary'>

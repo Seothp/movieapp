@@ -20,7 +20,6 @@ const useStyles = makeStyles({
         marginRight: 8,
     }
 });
-
 const cardLinkStyles = {
     display: 'flex',
     boxSizing: 'border-box',
@@ -29,8 +28,7 @@ const cardLinkStyles = {
     flexShrink: 0,
     marginBottom: 24,
 }
-
-export const List = ({list, type}) => {
+export const List = ({ list, type }) => {
     const classes = useStyles();
     switch (type) {
         case 'movie':
@@ -41,10 +39,10 @@ export const List = ({list, type}) => {
                     wrap='wrap'
                     justify='space-between'
                 >
-                    {list && list.map( item => (
+                    {list && list.map(item => (
                         <Link style={cardLinkStyles} key={item.id + String(Date.now())} to={`/movies/${item.id}`}>
                             <Card className={classes.card}>
-                                <Poster posterPath={item.poster_path}/>
+                                <Poster posterPath={item.poster_path} />
                                 <Typography variant='h5' component='h3' className={classes.title}>
                                     {item.title}
                                 </Typography>
@@ -72,10 +70,10 @@ export const List = ({list, type}) => {
                     wrap='wrap'
                     justify='space-between'
                 >
-                    {list && list.map( item => (
-                        <Link style={cardLinkStyles} key={item.id + String(Date.now())} to={`/tv/${item.id}`}>
+                    {list && list.map(item => (
+                        <Link style={cardLinkStyles} key={item.id} to={`/tv/${item.id}`}>
                             <Card className={classes.card}>
-                                <Poster posterPath={item.poster_path}/>
+                                <Poster posterPath={item.poster_path} />
                                 <Typography variant='h5' component='h3' className={classes.title}>
                                     {item.title}
                                 </Typography>
