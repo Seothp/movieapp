@@ -46,11 +46,6 @@ export const MoviesList = () => {
     const [list, setList] = useState([]);
     const [page, setPage] = useState(1);
     useEffect(() => {
-        // fetch(`${TMD_URL}${DISCOVER_PATH}movie?${TMD_API_KEY}&page=${page}`)
-        //     .then(res => res.json())
-        //     .then(result => {
-        //         setList(result.results);
-        //     });
         API.fetchMovies(page)
             .then(list => setList(list))
         scrollToTop()
