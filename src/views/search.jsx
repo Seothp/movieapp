@@ -14,7 +14,7 @@ import { Header } from '../components/header/header'
 import { List } from '../components/list/list'
 
 import { TMD_Api } from '../api'
-import { TMD_URL, TMD_API_KEY, MAX_PAGE, MIN_PAGE, OPTIONS } from '../constants'
+import { MAX_PAGE, MIN_PAGE, OPTIONS } from '../constants'
 
 const useStyles = makeStyles({
     search: {

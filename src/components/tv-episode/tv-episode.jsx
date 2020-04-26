@@ -3,10 +3,7 @@ import { useParams } from 'react-router-dom';
 import { Box, Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles'
 
-import { Poster } from '../poster/poster'
-
 import { TMD_Api } from '../../api'
-import { TMD_URL, TMD_API_KEY } from '../../constants'
 
 const useStyles = makeStyles({
     movieTextInfo: {
