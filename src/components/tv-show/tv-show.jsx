@@ -5,7 +5,8 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import { Poster } from '../poster/poster';
 
-import { TMD_URL, TMD_API_KEY, TMD_IMG_URL } from '../../constants';
+import { TMD_Api } from '../../api';
+import { TMD_IMG_URL } from '../../constants';
 
 const cardLinkStyles = {
     display: 'flex',
@@ -28,15 +29,13 @@ const useStyles = makeStyles({
         marginLeft: '16px' 
     }
 });
+const API = new TMD_Api()
 export const TvShow = () => {
     const [tvShow, setTvShow] = useState({});
     const { id } = useParams();
     useEffect(() => {
-        fetch(`${TMD_URL}tv/${id}?${TMD_API_KEY}`)
-            .then(res => res.json())
-            .then(result => {
-                setTvShow(result);
-            })
+        API.fetchTvShow(id)
+            .then(tv => setTvShow(tv))
     }, [id])
     const classes = useStyles();
     return (

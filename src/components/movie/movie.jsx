@@ -3,7 +3,9 @@ import { useParams } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles'
 import { Box, Grid } from '@material-ui/core';
 
-import { TMD_URL, TMD_API_KEY, TMD_IMG_URL } from '../../constants'
+import { TMD_Api } from '../../api'
+
+import { TMD_IMG_URL } from '../../constants'
 
 const useStyles = makeStyles({
     movieTextInfo: { 
@@ -11,16 +13,13 @@ const useStyles = makeStyles({
         marginLeft: 16
     }
 })
-
+const API = new TMD_Api()
 export const Movie = () => {
     const [movie, setMovie] = useState({})
     const { id } = useParams();
     useEffect(() => {
-        fetch(`${TMD_URL}movie/${id}?${TMD_API_KEY}`)
-            .then(res => res.json())
-            .then(result => {
-                setMovie(result);
-            })
+        API.fetchMovie(id)
+            .then(movie => setMovie(movie))
     }, [id])
     const classes = useStyles()
     return (

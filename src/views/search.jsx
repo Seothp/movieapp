@@ -12,6 +12,8 @@ import {
 
 import { Header } from '../components/header/header'
 import { List } from '../components/list/list'
+
+import { TMD_Api } from '../api'
 import { TMD_URL, TMD_API_KEY, MAX_PAGE, MIN_PAGE, OPTIONS } from '../constants'
 
 const useStyles = makeStyles({
@@ -42,7 +44,7 @@ const useStyles = makeStyles({
         marginRight: '32px'
     }
 })
-
+const API = new TMD_Api()
 export const Search = () => {
     let [searchArea, setSearchArea] = useState('movie');
     let [searchValue, setSearchValue] = useState('');
@@ -52,9 +54,9 @@ export const Search = () => {
     const handleSelectChange = e => setSearchArea(e.target.value);
     useEffect(() => {
         if (searchValue) {
-            fetch(`${TMD_URL}search/${searchArea}?${TMD_API_KEY}&page=${page}&query=${searchValue}`)
-                .then(res => res.json())
+            API.fetchWithSearch(searchArea, searchValue, page)
                 .then(result => setList(result.results))
+
         }
     }, [searchValue, page, searchArea])
     const nextPage = () => {
@@ -129,7 +131,7 @@ export const Search = () => {
                         onClick={backPage}
                         variant='contained'
                         color='primary'
-                        style={classes.mr4}
+                        className={classes.mr4}
                     >
                         back
                     </Button>

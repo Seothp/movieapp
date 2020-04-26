@@ -3,8 +3,8 @@ import { Typography, Button, Box } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 import { List } from '../list/list'
-
-import { TMD_URL, DISCOVER_PATH, TMD_API_KEY, MAX_PAGE, MIN_PAGE } from '../../constants'
+import { TMD_Api } from '../../api'
+import { MAX_PAGE, MIN_PAGE } from '../../constants'
 
 const useStyles = makeStyles({
     card: {
@@ -41,16 +41,18 @@ const useStyles = makeStyles({
         display: 'inline-block' 
     }
 });
-
+const API = new TMD_Api()
 export const MoviesList = () => {
     const [list, setList] = useState([]);
     const [page, setPage] = useState(1);
     useEffect(() => {
-        fetch(`${TMD_URL}${DISCOVER_PATH}movie?${TMD_API_KEY}&page=${page}`)
-            .then(res => res.json())
-            .then(result => {
-                setList(result.results);
-            });
+        // fetch(`${TMD_URL}${DISCOVER_PATH}movie?${TMD_API_KEY}&page=${page}`)
+        //     .then(res => res.json())
+        //     .then(result => {
+        //         setList(result.results);
+        //     });
+        API.fetchMovies(page)
+            .then(list => setList(list))
         scrollToTop()
     }, [page])
     const nextPage = () => {

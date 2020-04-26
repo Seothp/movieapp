@@ -4,6 +4,8 @@ import { Box, Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles'
 
 import { Poster } from '../poster/poster'
+
+import { TMD_Api } from '../../api'
 import { TMD_URL, TMD_API_KEY } from '../../constants'
 
 const useStyles = makeStyles({
@@ -12,16 +14,13 @@ const useStyles = makeStyles({
         marginLeft: '16px'
     }
 })
-
+const API = new TMD_Api()
 export const TvEpisode = () => {
     let [tvEpisode, setTvEpisode] = useState({})
     const { id, season_number, episode_number } = useParams()
     useEffect(() => {
-        fetch(`${TMD_URL}tv/${id}/season/${season_number}/episode/${episode_number}?${TMD_API_KEY}`)
-            .then(res => res.json())
-            .then(result => {
-                setTvEpisode(result);
-            })
+        API.fetchTvEpisode(id, season_number, episode_number)
+            .then(episode => setTvEpisode(episode))
     }, [id, season_number, episode_number])
     const classes = useStyles() 
     return (

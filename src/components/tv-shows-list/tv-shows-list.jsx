@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Typography, Button, Box } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
+import { TMD_Api } from '../../api'
 import { List } from '../list/list'
-import { TMD_URL, DISCOVER_PATH, TMD_API_KEY, MAX_PAGE, MIN_PAGE } from '../../constants'
+import {  MAX_PAGE, MIN_PAGE } from '../../constants'
 
 const useStyles = makeStyles({
     card: {
@@ -40,17 +41,14 @@ const useStyles = makeStyles({
         marginRight: '32px'
     }
 });
-
+const API = new TMD_Api()
 export const TvShowList = () => {
     const [list, setList] = useState([]);
     const [page, setPage] = useState(1);
     const classes = useStyles()
     useEffect(() => {
-        fetch(`${TMD_URL}${DISCOVER_PATH}tv?${TMD_API_KEY}&page=${page}`)
-            .then(res => res.json())
-            .then(result => {
-                setList(result.results);
-            });
+        API.fetchTvShows(page)
+            .then(list => setList(list))
         scrollToTop()
     }, [page])
     const nextPage = () => {
