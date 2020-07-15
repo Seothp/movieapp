@@ -70,6 +70,7 @@ export const Search = () => {
         }
     }
     const classes = useStyles();
+    const isEmpty = list.length === 0;
     return (
         <Container component='div'>
             <Header />
@@ -125,7 +126,7 @@ export const Search = () => {
             <Grid>
                 <List type={searchArea} list={list} />
             </Grid>
-            {list &&
+            {!isEmpty &&
                 <Box className={classes.buttonBox}>
                     <Button
                         onClick={backPage}
