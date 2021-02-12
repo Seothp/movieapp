@@ -47,7 +47,7 @@ export const List = ({ list, type }) => {
                                     {item.title}
                                 </Typography>
                                 <Typography variant='subtitle2' component='span' className={classes.inlineSubtitle}>
-                                    Votes:
+                                    Rating:
                                 </Typography>
                                 <Typography variant='body2' component='span'>
                                     {item.vote_average}

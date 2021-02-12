@@ -7,14 +7,16 @@ import {
     makeStyles,
     MenuItem,
     Grid,
-    Typography,
 } from '@material-ui/core';
+
+import { CircularProgress } from '@material-ui/core';
 
 import { Header } from '../components/header/header'
 import { List } from '../components/list/list'
+import { PaginationButtons } from '../components/pagination-buttons/pagination-buttons';
 
 import { TMD_Api } from '../api'
-import { MAX_PAGE, MIN_PAGE, OPTIONS } from '../constants'
+import { MIN_PAGE, OPTIONS } from '../constants'
 
 const useStyles = makeStyles({
     search: {
@@ -33,34 +35,27 @@ const useStyles = makeStyles({
     select: {
         width: 80,
     },
-    currentPage: {
-        margin: '16px', 
-        display: 'inline-block'
-    },
-    mr2: {
-        marginRight: '16px'
-    },
-    mr4: {
-        marginRight: '32px'
-    }
 })
 const API = new TMD_Api()
 export const Search = () => {
-    let [searchArea, setSearchArea] = useState('movie');
-    let [searchValue, setSearchValue] = useState('');
-    let [list, setList] = useState([]);
-    let [page, setPage] = useState(1);
+    const [searchArea, setSearchArea] = useState('movie');
+    const [searchValue, setSearchValue] = useState('');
+    const [list, setList] = useState([]);
+    const [page, setPage] = useState(1);
+    const [maxPage, setMaxPage] = useState([1]);
     const handleInputChange = e => setSearchValue(e.target.value);
     const handleSelectChange = e => setSearchArea(e.target.value);
     useEffect(() => {
         if (searchValue) {
             API.fetchWithSearch(searchArea, searchValue, page)
-                .then(result => setList(result.results))
-
+                .then(res => {
+                    setList(res.results)
+                    setMaxPage(res.total_pages);
+                })
         }
     }, [searchValue, page, searchArea])
     const nextPage = () => {
-        if (page < MAX_PAGE) {
+        if (page < maxPage) {
             setPage(page + 1)
         }
     }
@@ -101,49 +96,27 @@ export const Search = () => {
                     Search
                 </Button>
             </Box>
-            <Typography
-                variant='subtitle2'
-                component='span'
-                className={classes.currentPage}
-            >
-                Current page: {page}
-            </Typography>
-            <Button
-                onClick={backPage}
-                variant='contained'
-                color='primary'
-                className={classes.mr2}
-            >
-                back
-            </Button>
-            <Button
-                onClick={nextPage}
-                variant='contained'
-                color='primary'
-            >
-                next
-            </Button>
-            <Grid>
-                <List type={searchArea} list={list} />
-            </Grid>
-            {!isEmpty &&
-                <Box className={classes.buttonBox}>
-                    <Button
-                        onClick={backPage}
-                        variant='contained'
-                        color='primary'
-                        className={classes.mr4}
-                    >
-                        back
-                    </Button>
-                    <Button
-                        onClick={nextPage}
-                        variant='contained'
-                        color='primary'
-                    >
-                        next
-                    </Button>
-                </Box>
+            {(isEmpty && searchValue) &&
+                <CircularProgress style={{ display: 'block', margin: '0 auto' }} />
+            }
+            {(!isEmpty && searchValue) &&
+                <>
+                    <PaginationButtons
+                        currentPage={page}
+                        maxPage={maxPage}
+                        nextPage={nextPage}
+                        backPage={backPage}
+                    />
+                    <Grid>
+                        <List type={searchArea} list={list} />
+                    </Grid>
+                    <PaginationButtons
+                        currentPage={page}
+                        maxPage={maxPage}
+                        nextPage={nextPage}
+                        backPage={backPage}
+                    />
+                </>
             }
         </Container>
     )

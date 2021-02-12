@@ -16,7 +16,7 @@ export const TvEpisode = () => {
     let [tvEpisode, setTvEpisode] = useState({})
     const { id, season_number, episode_number } = useParams()
     useEffect(() => {
-        API.fetchTvEpisode(id, season_number, episode_number)
+        API.fetchTvShowEpisode(id, season_number, episode_number)
             .then(episode => setTvEpisode(episode))
     }, [id, season_number, episode_number])
     const classes = useStyles() 
